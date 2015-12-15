@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "boxcutter/ubuntu1404-desktop"
+
+  config.vm.network "private_network", ip: "192.168.30.10"
+
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update
+    sudo mkdir -p /usr/java
+    curl -v -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u65-b17/jdk-8u65-linux-x64.tar.gz | sudo tar --no-same-owner -xz -C /usr/java
+    sudo ln -s /usr/java/jdk1.8.0_65/bin/java  /usr/bin/java
+    sudo ln -s /usr/java/jdk1.8.0_65/bin/javac /usr/bin/javac
+
+  SHELL
+end

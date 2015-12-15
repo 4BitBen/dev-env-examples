@@ -2,6 +2,18 @@
 golang/server
 ruby/blog
 
+### Gradle template
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+
+
 ### Go template
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
