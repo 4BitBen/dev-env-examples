@@ -5,9 +5,12 @@
 # Install
 ````
 vagrant up
-vagrant ssh
+````
+Bring up a terminal window within the VM
+
+````
 cd /vagrant
 ./gradlew run
 ````
 
-Go to [http://192.168.30.10:8080](http://192.168.30.10:8080)
+Bring up firefox within the VM and go to [http://localhost:8080](http://localhost:8080)
