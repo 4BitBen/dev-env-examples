@@ -1,0 +1,39 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="./ga.js"></script>
+<script>
+  function sbmt() {
+    var t = document.getElementById('txt').value;
+    var fatal = document.getElementById('fatal').checked;
+
+    // ga('send', 'exception', [fieldsObject]);
+    ga('send', 'exception', {
+      'exDescription': t,
+      'exFatal': fatal
+    });
+
+    document.getElementById('response').innerHTML += (document.getElementById('response').innerHTML.length)
+      ? '.' : 'Custom error recorded.';
+
+    return false; // Don't reload page
+  }
+</script>
+</head>
+<body>
+
+  <h1>Exception Tracking</h1>
+  <ul>
+    <li><a href="./">Home</a></li>
+    <li><a href="./ab.html">Go to A/B</a></li>
+  </ul>
+
+  <form onsubmit="return sbmt()">
+    <input id="fatal" type="checkbox" title="Fatal?">
+    <input id="txt" type="text" placeholder="Produce an error">
+    <input type="submit" value="Error!">
+    <p id="response"></p>
+  </form>
+
+</body>
+</html>
