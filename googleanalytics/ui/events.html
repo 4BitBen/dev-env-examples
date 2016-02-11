@@ -1,0 +1,45 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="./ga.js"></script>
+<script>
+  function cntUp() {
+    ga('send', 'event', 'input', 'counter', 'increment', 1);
+    document.getElementById('cnt').innerHTML++;
+  }
+  function cntDown() {
+    ga('send', 'event', 'input', 'counter', 'decrement', 1);
+    document.getElementById('cnt').innerHTML--;
+  }
+
+  function sbmt() {
+    var t = document.getElementById('txt').value;
+    ga('send', 'event', 'input', 'search', t, t.length);
+
+    document.getElementById('response').innerHTML += (document.getElementById('response').innerHTML.length)
+      ? '.' : 'Yea... That doesn\'t do anything. Sorry.';
+
+    return false; // Don't reload page
+  }
+</script>
+</head>
+<body>
+
+  <h1>User Events</h1>
+  <ul>
+    <li><a href="./foo.html">Go to Foo</a></li>
+    <li><a href="./timings.html">Go to User Timings</a></li>
+  </ul>
+
+  <span id="cnt">0</span> <button onclick="cntDown()">-</button> <button onclick="cntUp()">+</button>
+
+  <p></p>
+
+  <form onsubmit="return sbmt()">
+    <input id="txt" type="text" placeholder="Search for something">
+    <input type="submit" value="Search">
+    <p id="response"></p>
+  </form>
+
+</body>
+</html>

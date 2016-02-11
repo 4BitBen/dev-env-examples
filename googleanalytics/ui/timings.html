@@ -1,0 +1,43 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="./ga.js"></script>
+<script>
+  var startTime;
+  function start() {
+    startTime = new Date();
+
+    ga('send', 'event', 'input', 'stopwatch', 'start', 1);
+
+    document.getElementById('start').style.display = 'none';
+    document.getElementById('stop').style.display = 'inherit';
+    document.getElementById('elapsed').innerHTML = '';
+  }
+  function stop() {
+    var elapsed = new Date() - startTime;
+
+    ga('send', 'event', 'input', 'stopwatch', 'stop', 1);
+
+    // ga('send', 'timing', [timingCategory], [timingVar], [timingValue], [timingLabel], [fieldsObject]);
+    ga('send', 'timing', 'myTimings', 'stopwatch', elapsed, 'user');
+
+    document.getElementById('start').style.display = 'inherit';
+    document.getElementById('stop').style.display = 'none';
+    document.getElementById('elapsed').innerHTML = elapsed+'ms';
+  }
+</script>
+</head>
+<body>
+
+  <h1>User Timings</h1>
+  <ul>
+    <li><a href="./bar.html">Go to Bar</a></li>
+    <li><a href="./exceptions.html">Go to Exception Tracking</a></li>
+  </ul>
+
+  <button id="start" onclick="start()">Start</button>
+  <button id="stop" onclick="stop()" style="display:none;">Stop</button>
+  <p id="elapsed"></p>
+
+</body>
+</html>
