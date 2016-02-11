@@ -1,0 +1,34 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="./ga.js"></script>
+<script src="//www.google-analytics.com/cx/api.js?experiment=aKoLexvcSaWqXM-gGn4RjA"></script>
+<script>
+  var image_variations = [
+      'https://i.ytimg.com/vi/beT_KcblaBI/maxresdefault.jpg',
+      'https://i.ytimg.com/vi/RoFz9V_BEG4/maxresdefault.jpg'
+  ]
+
+  // 2. Choose the Variation for the User
+  var variation = cxApi.chooseVariation();
+
+  window.onload = function(){
+    ga('send', 'event', 'experiments', 'demo', variation, 1);
+
+    // 3. Evaluate the result and update the image
+    exp_image = document.getElementById('pic');
+    exp_image.src = image_variations[variation];
+  }
+</script>
+</head>
+<body>
+
+  <h1>A/B Testing</h1>
+  <ul>
+    <li><a href="./">Home</a></li>
+  </ul>
+
+  <img id="pic">
+
+</body>
+</html>
