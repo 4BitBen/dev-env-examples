@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "boxcutter/ubuntu1404-desktop"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize ["modifyvm", :id, "--accelerate3d", "off"]
+    vb.memory = 2048
+    vb.cpus = 2
+  end
+
+  config.vm.provider "parallels" do |vmp|
+    vmp.memory = 2048
+    vmp.cpus = 2
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update
+    curl -o terraform.zip -sL https://releases.hashicorp.com/terraform/0.6.14/terraform_0.6.14_linux_amd64.zip
+    (cd /usr/local/bin && sudo unzip ~vagrant/terraform.zip)
+    cp -r /vagrant/terraform .
+    chown -R vagrant:vagrant terraform
+  SHELL
+end

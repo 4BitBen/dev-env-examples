@@ -1,6 +1,7 @@
 ### Project-specific ignores
 golang/server
 ruby/blog
+terraform/terraform/aws/terraform.pem
 
 ### Gradle template
 .gradle
